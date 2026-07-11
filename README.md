@@ -13,6 +13,21 @@ This project contains a Jenkinsfile that models a full CI/CD pipeline. It is str
 - CI/CD workflow design
 - Build/test/deploy stage modelling
 
+## Pipeline Flow
+
+```mermaid
+flowchart LR
+  SCM["Checkout SCM"] --> Tools["Install tools"]
+  Tools --> Build["Build"]
+  Build --> Tests["Unit and integration tests"]
+  Tests --> Analysis["Code analysis"]
+  Analysis --> Security["Security scan"]
+  Security --> Staging["Deploy to staging"]
+  Staging --> StagingTests["Integration tests on staging"]
+  StagingTests --> Production["Deploy to production"]
+  Production --> Notify["Final notification"]
+```
+
 ## Pipeline Stages
 
 - Checkout SCM
@@ -43,4 +58,3 @@ This project contains a Jenkinsfile that models a full CI/CD pipeline. It is str
 ## Notes
 
 This is a pipeline practice project. Email addresses, credentials, and environment-specific configuration should be externalised before use in a real deployment.
-
